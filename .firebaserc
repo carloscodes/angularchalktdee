@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "chalkcalculator"
+  },
+  "targets": {
+    "chalkcalculator": {
+      "hosting": {
+        "angular-chalk-tdee": [
+          "chalkcalculator"
+        ]
+      }
+    }
+  }
+}

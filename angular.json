@@ -103,6 +103,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "angular-chalk-tdee:build:production",
+            "firebaseProject": "chalkcalculator",
+            "firebaseHostingSite": "chalkcalculator"
+          }
         }
       }
     }
