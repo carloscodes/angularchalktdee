@@ -1,7 +1,67 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+
 
 * {
     font-family: 'Montserrat', sans-serif;
+}
+
+mat-card {
+    width: 50%;
+}
+
+.pie {
+    width: 100%;
+}
+
+.learn {
+    color: #004d99;
+}
+
+.how {
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: 'Outfit', sans-serif;
+    color: #004d99;
+}
+
+.sml {
+    padding: 0 20%;
+}
+
+.layout {
+    display: flex;
+    flex-direction: row;
+}
+
+@media screen and (max-width: 800px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    .sml {
+        font-size: .75rem;
+    }
+}
+
+.matCard1 {
+    margin-right: 5%;
+}
+
+.matCard2 {
+    padding: 3% 5%;
+}
+
+@media screen and (max-width: 800px) {
+    mat-card {
+        width: 100%;
+        margin-bottom: 5%;
+    }
+
+    .matCard1 {
+        margin-right: 0;
+    }
+
 }
 
 .button {

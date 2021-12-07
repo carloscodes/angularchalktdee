@@ -2,8 +2,12 @@
 
 <section>
     <div class="container" style="font-size: 14px;">
-        <div class="title"><h1>TDEE Calculator</h1></div>
-    <mat-card>
+        <div class="title"><h2 class="learn">Learn How Many Calories You Burn Per Day</h2>
+            <p class="sml">Use the TDEE calculator to learn your Total Daily Energy Expenditure, a measure of how many calories you burn per day. </p>
+        </div>
+
+        <div class="layout">
+    <mat-card class="matCard1">
         <form [formGroup]="firstFormGroup">
             <mat-form-field>
               <mat-label>Age (years)</mat-label>
@@ -63,8 +67,17 @@
             </mat-form-field>
           </form>
 
-        <button (click)="showHideResults()" class="button" mat-stroked-button color="warn">{{ btnText }}</button>
+        <button (click)="showHideResults()" class="button" mat-stroked-button>{{ btnText }}</button>
     </mat-card>
+
+    <mat-card class="matCard2">
+        <h2 class="how">How TDEE is Calculated</h2>
+        <br>
+        <p>Your Total Daily Energy Expenditure (TDEE) is an estimation of how many calories you burn per day when exercise is taken into account. It is calculated by first figuring out your Basal Metabolic Rate, then multiplying that value by an activity multiplier.</p>
+        <p>Since your BMR represents how many calories your body burns when at rest, it is necessary to adjust the numbers upwards to account for the calories you burn during the day. This is true even for those with a sedentary lifestyle. Our TDEE calculator uses the best formulas and displays your score in a way that's easy to read and meaningful.</p>
+        <img class="pie" src="../../assets/tdee-pie-chart.png" >
+    </mat-card>
+    </div>
     <br><br><br>
 
     <div class="results" *ngIf="resultsReady">
