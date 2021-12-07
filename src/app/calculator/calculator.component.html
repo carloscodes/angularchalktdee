@@ -4,14 +4,20 @@
     <div class="container" style="font-size: 14px;">
         <div class="title"><h1>TDEE Calculator</h1></div>
     <mat-card>
-        <mat-form-field appearance="outline" >
-            <mat-label>Age (years) </mat-label>
-            <input type="number" matInput placeholder="ex.) 25">
-        </mat-form-field>
-        <mat-form-field appearance="outline" >
-            <mat-label>Body Weight (lbs) </mat-label>
-            <input type="number" matInput placeholder="ex.) 170">
-        </mat-form-field>
+        <form [formGroup]="firstFormGroup">
+            <mat-form-field>
+              <mat-label>Age (years)</mat-label>
+              <input type="number" matInput placeholder="Ex.) 25" formControlName="firstCtrl" required>
+            </mat-form-field>
+          </form>
+
+          <form [formGroup]="secondFormGroup">
+            <mat-form-field>
+              <mat-label>Body Weight (lbs)</mat-label>
+              <input type="number" matInput placeholder="Ex.) 165" formControlName="secondCtrl" required>
+            </mat-form-field>
+          </form>
+
 
         <mat-form-field>
             <mat-label>Gender</mat-label>
@@ -50,11 +56,12 @@
         </mat-form-field>
 
 
-
-        <mat-form-field appearance="outline" >
-            <mat-label>Body Fat % (Optional) </mat-label>
-            <input type="number" matInput placeholder="ex.) 21">
-        </mat-form-field>
+        <form [formGroup]="thirdFormGroup">
+            <mat-form-field>
+              <mat-label>Body Fat % (Optional)</mat-label>
+              <input type="number" matInput placeholder="Ex.) 22" formControlName="thirdCtrl" required>
+            </mat-form-field>
+          </form>
 
         <button (click)="showHideResults()" class="button" mat-stroked-button color="warn">{{ btnText }}</button>
     </mat-card>

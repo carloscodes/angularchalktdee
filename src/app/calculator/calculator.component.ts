@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface Gender {
   value: string;
@@ -26,6 +28,11 @@ interface Goal {
   styleUrls: ['./calculator.component.scss']
 })
 export class CalculatorComponent implements OnInit {
+
+  firstFormGroup!: FormGroup;
+  secondFormGroup!: FormGroup;
+  thirdFormGroup!: FormGroup;
+
 
   selectedGender!: string;
   selectedHeight!: string;
@@ -100,12 +107,26 @@ export class CalculatorComponent implements OnInit {
 
 
 
-  constructor() { }
+  constructor(private snack: MatSnackBar, private _formBuilder: FormBuilder ) { }
 
   ngOnInit(): void {
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required],
+    });
+
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required],
+    });
+
+    this.thirdFormGroup = this._formBuilder.group({
+      thirdCtrl: ['', Validators.required],
+    });
   }
 
   showHideResults(){
+    // validate that all fields have been entered
+    if(this.selectedGender && this.selectedHeight && this.selectedActivity && this.selectedGoal){
+      
     this.resultsReady = !this.resultsReady;
     this.btnText = this.resultsReady ? 'Reset' : 'Calculate';
 
@@ -120,6 +141,12 @@ export class CalculatorComponent implements OnInit {
     // TO DO: update to display values
 
     this.showRealValues();
+    } else {
+      this.snack.open('Missing field(s)', 'x', {
+        duration: 3000
+      });
+    }
+
   }
 
 
@@ -132,6 +159,10 @@ export class CalculatorComponent implements OnInit {
 
     let a = this.activities.find(o => o.aValue === Number(this.selectedActivity))!;
     console.log(a);
+
+    console.log(this.firstFormGroup.get('firstCtrl')!.value);
+    console.log(this.secondFormGroup.get('secondCtrl')!.value);
+    console.log(this.thirdFormGroup.get('thirdCtrl')!.value);
 
     this.selectedHeightDisplay = h.ftIn;
     this.selectedActivityDisplay = a.value;
