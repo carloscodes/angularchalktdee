@@ -67,7 +67,7 @@
             </mat-form-field>
           </form>
 
-        <button (click)="showHideResults()" class="button" mat-stroked-button>{{ btnText }}</button>
+        <button (click)="showHideResults(macros)" class="button" mat-stroked-button>{{ btnText }}</button>
     </mat-card>
 
     <mat-card class="matCard2">
@@ -89,8 +89,10 @@
         </mat-chip-list>
     </div>
 
-    <div class="macros" *ngIf="resultsReady">
-        <h2>results ready</h2>
+    <div #macros >
+        <div class="macros" *ngIf="resultsReady">
+            <h2>results ready</h2>
+        </div>
     </div>
     
     </div>

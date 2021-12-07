@@ -123,7 +123,7 @@ export class CalculatorComponent implements OnInit {
     });
   }
 
-  showHideResults(){
+  showHideResults(el: HTMLElement) {
     // validate that all fields have been entered
     if(this.selectedGender && this.selectedHeight && this.selectedActivity && this.selectedGoal){
       
@@ -141,6 +141,7 @@ export class CalculatorComponent implements OnInit {
     // TO DO: update to display values
 
     this.showRealValues();
+    el.scrollIntoView({behavior: 'smooth'});
     } else {
       this.snack.open('Missing field(s)', 'x', {
         duration: 3000
