@@ -1,7 +1,7 @@
 <img class="logo" src="../../assets/chalk-logo1.png">
 
 <section>
-    <div class="container">
+    <div class="container" style="font-size: 14px;">
         <div class="title"><h1>TDEE Calculator</h1></div>
     <mat-card>
         <mat-form-field appearance="outline" >
@@ -12,6 +12,66 @@
             <mat-label>Body Weight (lbs) </mat-label>
             <input type="number" matInput placeholder="ex.) 170">
         </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Gender</mat-label>
+        <mat-select [(ngModel)]="selectedGender" name="gender">
+            <mat-option *ngFor="let g of genders" [value]="g.value">
+              {{g.viewValue}}
+            </mat-option>
+        </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Height </mat-label>
+        <mat-select [(ngModel)]="selectedHeight" name="height">
+            <mat-option *ngFor="let h of heights" [value]="h.cmValue">
+              {{h.ftIn}}
+            </mat-option>
+        </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Activity Level</mat-label>
+        <mat-select [(ngModel)]="selectedActivity" name="activity">
+            <mat-option *ngFor="let a of activities" [value]="a.aValue">
+              {{a.value}}
+            </mat-option>
+        </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Macro Split/Goal </mat-label>
+        <mat-select [(ngModel)]="selectedGoal" name="goal">
+            <mat-option *ngFor="let g of goals" [value]="g.value">
+              {{g.viewValue}}
+            </mat-option>
+        </mat-select>
+        </mat-form-field>
+
+
+
+        <mat-form-field appearance="outline" >
+            <mat-label>Body Fat % (Optional) </mat-label>
+            <input type="number" matInput placeholder="ex.) 21">
+        </mat-form-field>
+
+        <button (click)="showHideResults()" class="button" mat-stroked-button color="warn">{{ btnText }}</button>
     </mat-card>
+    <br><br><br>
+
+    <div class="results" *ngIf="resultsReady">
+        <mat-chip-list aria-label="Selections">
+            <mat-chip>{{ selectedGender }}</mat-chip>
+            <mat-chip>{{ selectedHeightDisplay }}</mat-chip>
+            <mat-chip>{{ selectedActivityDisplay }}</mat-chip>
+            <mat-chip>{{ selectedGoalDisplay }}</mat-chip>
+        </mat-chip-list>
+    </div>
+
+    <div class="macros" *ngIf="resultsReady">
+        <h2>results ready</h2>
+    </div>
+    
     </div>
 </section>
