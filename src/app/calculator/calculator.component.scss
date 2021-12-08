@@ -6,6 +6,17 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+.hrwidth {
+    width: 60%;
+    margin: auto;
+}
+
+.bookmark {
+    float: right;
+    font-size: 25px;
+    display: block;
+}
+
 .finalResults {
     padding-top: 5%;
 }
@@ -13,10 +24,16 @@
 .whyThis {
     cursor: pointer;
     color: #004d99;
+    text-decoration: underline;
 }
 
 table {
     width: 100%;
+}
+
+.goalDisplay {
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
 mat-card {
@@ -26,7 +43,7 @@ mat-card {
 
 .goalResult {
     width: 100%;
-    padding: 8%;
+    padding: 2% 8% 2% 8%;
 }
 
 .pie {
@@ -50,6 +67,7 @@ mat-card {
 
 .sml2 {
     font-size: .75rem;
+    padding: 20%;
 }
 
 .layout {

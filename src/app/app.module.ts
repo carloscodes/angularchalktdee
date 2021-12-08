@@ -16,6 +16,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTableModule } from '@angular/material/table';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { MatTableModule } from '@angular/material/table';
     MatSnackBarModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    MatTableModule
+    MatTableModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

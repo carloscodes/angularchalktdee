@@ -89,7 +89,9 @@
                 <p>
                     <span class="bold">{{ displayMaintenance }} Calories/Day</span>
                 </p>
+                <div class="hrwidth">
                 <hr>
+                </div>
                 <p>
                     <span class="bold">{{ displayMaintenance * 7 }} Calories/Week</span>
                 </p>
@@ -117,20 +119,23 @@
             </div>
             </div>
         
-            <div class="goalResult" *ngIf="chosenGoal === 1">
-                <h3> {{ selectedGoalDisplay }} </h3>
+            <mat-card class="goalResult" *ngIf="chosenGoal === 1">
+                <fa-icon class="bookmark" [icon]="faBookmark"></fa-icon>
+                <br>
+                <br>
+                <h3 class="goalDisplay"> {{ selectedGoalDisplay }} </h3>
                 <span class="whyThis" title="Based on your current goals, we recommend you follow this macro breakdown" (click)="showInfo()">Why this?</span>
-                <p class="sml2" *ngIf="wantsInfo">Based on your current goals, we recommend you follow this macro breakdown</p>
+                <p class="sml2" *ngIf="wantsInfo">While your TDEE can be used as a base line. Our program requires you to follow this macro breakdown</p>
                 <br>
                 <p>Total Calories: {{ displayMaintenance2 }}</p>
                 <br>
                 <p>Carbs: {{ carbsCalories }} Calories/{{ carbsGrams }} Grams</p>
                 <p>Protein: {{ proteinCalories }} Calories/{{ proteinGrams }} Grams</p>
                 <p>Fats: {{ fatCalories }} Calories/{{ fatGrams }} Grams</p>
-            </div>
+            </mat-card>
 
-            <div class="goalResult" *ngIf="chosenGoal === 2">
-                <h3> {{ selectedGoalDisplay }} </h3>
+            <mat-card class="goalResult" *ngIf="chosenGoal === 2">
+                <h3 class="goalDisplay"> {{ selectedGoalDisplay }} </h3>
                 <span title="Based on your current goals, we recommend you follow this macro breakdown" (click)="showInfo()">Why this?</span>
                 <p class="sml2" *ngIf="wantsInfo">Based on your current goals, we recommend you follow this macro breakdown</p>
                 <br>
@@ -139,10 +144,10 @@
                 <p>Carbs: {{ carbsCalories }} Calories/{{ carbsGrams }} Grams</p>
                 <p>Protein: {{ proteinCalories }} Calories/{{ proteinGrams }} Grams</p>
                 <p>Fats: {{ fatCalories }} Calories/{{ fatGrams }} Grams</p>
-            </div>
+            </mat-card>
 
-            <div class="goalResult" *ngIf="chosenGoal === 3">
-                <h3> {{ selectedGoalDisplay }} </h3>
+            <mat-card class="goalResult" *ngIf="chosenGoal === 3">
+                <h3 class="goalDisplay"> {{ selectedGoalDisplay }} </h3>
                 <span title="Based on your current goals, we recommend you follow this macro breakdown" (click)="showInfo()">Why this?</span>
                 <p class="sml2" *ngIf="wantsInfo">Based on your current goals, we recommend you follow this macro breakdown</p>
                 <br>
@@ -151,9 +156,9 @@
                 <p>Carbs: {{ carbsCalories }} Calories/{{ carbsGrams }} Grams</p>
                 <p>Protein: {{ proteinCalories }} Calories/{{ proteinGrams }} Grams</p>
                 <p>Fats: {{ fatCalories }} Calories/{{ fatGrams }} Grams</p>
-            </div>
-            <div class="goalResult" *ngIf="chosenGoal === 4">
-                <h3> {{ selectedGoalDisplay }} </h3>
+            </mat-card>
+            <mat-card class="goalResult" *ngIf="chosenGoal === 4">
+                <h3 class="goalDisplay"> {{ selectedGoalDisplay }} </h3>
                 <span title="Based on your current goals, we recommend you follow this macro breakdown" (click)="showInfo()">Why this?</span>
                 <p class="sml2" *ngIf="wantsInfo">Based on your current goals, we recommend you follow this macro breakdown</p>
                 <br>
@@ -163,7 +168,7 @@
                 <p>Protein: {{ proteinCalories }} Calories/{{ proteinGrams }} Grams</p>
                 <p>Fats: X Calories/X Grams</p>
                 <p>Use whatever macro split you want for carbs and fats, but just hit 1 gram of protein per pound of Bodyweight</p>
-            </div>
+            </mat-card>
 
             
         </div>

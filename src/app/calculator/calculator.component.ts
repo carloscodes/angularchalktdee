@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TdeeserviceService } from '../tdeeservice.service';
+import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 
 interface Gender {
   value: string;
@@ -36,6 +37,7 @@ export interface Results {
   styleUrls: ['./calculator.component.scss']
 })
 export class CalculatorComponent implements OnInit {
+  faBookmark = faBookmark;
 
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
