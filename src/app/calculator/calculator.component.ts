@@ -61,6 +61,8 @@ export class CalculatorComponent implements OnInit {
   selectedActivityDisplay = '';
   selectedGoalDisplay = '';
 
+  chosenGoal = 2;
+
   // lean bulk: 1.1
   //traditional: 1.2
   // fat loss: .75

@@ -124,6 +124,48 @@
                   </table>
             </div>
             </div>
+
+        
+            <div class="goalResult" *ngIf="chosenGoal === 1">
+                <h2>Lean Bulk (110% Surplus)</h2>
+                <br>
+                <p>Total Calories: !VALUE!</p>
+                <br>
+                <p>Carbs: !VALUE! Calories/!VALUE! Grams</p>
+                <p>Protein: !VALUE! Calories/!VALUE! Grams</p>
+                <p>Fats: !VALUE! Calories/!VALUE! Grams</p>
+            </div>
+
+            <div class="goalResult" *ngIf="chosenGoal === 2">
+                <h2>Traditional Bulk (120% Surplus)</h2>
+                <br>
+                <p>Total Calories: !VALUE!</p>
+                <br>
+                <p>Carbs: !VALUE! Calories/!VALUE! Grams</p>
+                <p>Protein: !VALUE! Calories/!VALUE! Grams</p>
+                <p>Fats: !VALUE! Calories/!VALUE! Grams</p>
+            </div>
+
+            <div class="goalResult" *ngIf="chosenGoal === 3">
+                <h2>Fat Loss (25% Deficit)</h2>
+                <br>
+                <p>Total Calories: !VALUE!</p>
+                <br>
+                <p>Carbs: !VALUE! Calories/!VALUE! Grams</p>
+                <p>Protein: !VALUE! Calories/!VALUE! Grams</p>
+                <p>Fats: !VALUE! Calories/!VALUE! Grams</p>
+            </div>
+            <div class="goalResult" *ngIf="chosenGoal === 4">
+                <h2>Maintenance</h2>
+                <br>
+                <p>Total Calories: !VALUE!</p>
+                <br>
+                <p>Carbs: X Calories/X Grams</p>
+                <p>Protein: !VALUE! Calories/!VALUE! Grams</p>
+                <p>Fats: X Calories/X Grams</p>
+                <p>Use whatever macro split you want for carbs and fats, but just hit 1 gram of protein per pound of Bodyweight</p>
+            </div>
+            
         </div>
     </div>
     
