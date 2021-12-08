@@ -12,6 +12,7 @@ table {
 
 mat-card {
     width: 50%;
+    padding-top: 5%;
 }
 
 .pie {
@@ -72,6 +73,7 @@ mat-card {
 
 @media screen and (max-width: 800px) {
     mat-card {
+        padding-top: 0;
         width: 100%;
         margin-bottom: 10%;
     }
