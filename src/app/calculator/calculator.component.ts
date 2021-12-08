@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TdeeserviceService } from '../tdeeservice.service';
 
 interface Gender {
   value: string;
@@ -15,6 +16,7 @@ interface Height {
 interface Activity {
   aValue: number;
   value: string;
+  position: number;
 }
 
 interface Goal {
@@ -26,15 +28,6 @@ export interface Results {
   activity: string;
   calories: number;
 }
-
-const DATA: Results[] = [
-  {activity: 'Basal Metabolic Rate', calories: 0},
-  {activity: 'Sedentary', calories: 500},
-  {activity: 'Light Exercise', calories: 1000},
-  {activity: 'Moderate Exercise', calories: 1500},
-  {activity: 'Heavy Exercise', calories: 2000},
-  {activity: 'Athlete', calories: 2500},
-];
 
 
 @Component({
@@ -56,21 +49,35 @@ export class CalculatorComponent implements OnInit {
   resultsReady = false;
   btnText = 'Calculate';
 
+  wantsInfo = false;
+
   // values to display
   selectedHeightDisplay = '';
   selectedActivityDisplay = '';
   selectedGoalDisplay = '';
 
-  chosenGoal = 2;
+  chosenGoal!: number;
 
   // lean bulk: 1.1
   //traditional: 1.2
   // fat loss: .75
   // maintenance: 1
   goalArray = [1.1, 1.2, .75, 1];
+  carbsCalories = 0;
+  carbsGrams = 0;
+
+  proteinCalories = 0;
+  proteinGrams = 0;
+
+  fatCalories = 0;
+  fatGrams = 0;
+
 
   displayedColumns: string[] = ['activity', 'calories/day'];
-  dataSource = DATA;
+
+  DATA: Results[] = [];
+
+  dataSource: any[] = [];
 
   genders: Gender[] = [
     {value: 'male', viewValue: 'Male'},
@@ -111,11 +118,11 @@ export class CalculatorComponent implements OnInit {
   ]
 
   activities: Activity[] = [
-    {aValue: 1.2, value: 'Sedentary(Office Job)'},
-    {aValue: 1.375, value: 'Light Exercise (1-2 times/week)'},
-    {aValue: 1.55, value: 'Moderate Exercise (3-5times/week)'},
-    {aValue: 1.725, value: 'Heavy Exercise (6-7 times/week)'},
-    {aValue: 1.9, value: 'Athlete (Twice/day)'},
+    {aValue: 1.2, value: 'Sedentary(Office Job)', position: 0},
+    {aValue: 1.375, value: 'Light Exercise (1-2 times/week)', position: 1},
+    {aValue: 1.55, value: 'Moderate Exercise (3-5times/week)', position: 2},
+    {aValue: 1.725, value: 'Heavy Exercise (6-7 times/week)', position: 3},
+    {aValue: 1.9, value: 'Athlete (Twice/day)', position: 4},
   ];
 
   goals: Goal[] = [
@@ -126,8 +133,11 @@ export class CalculatorComponent implements OnInit {
   ];
 
 
+  displayValues: any[] = [];
+  displayMaintenance!: number;
+  displayMaintenance2!: number;
 
-  constructor(private snack: MatSnackBar, private _formBuilder: FormBuilder ) { }
+  constructor(private servce: TdeeserviceService, private snack: MatSnackBar, private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.firstFormGroup = this._formBuilder.group({
@@ -138,30 +148,29 @@ export class CalculatorComponent implements OnInit {
       secondCtrl: ['', Validators.required],
     });
 
-    this.thirdFormGroup = this._formBuilder.group({
-      thirdCtrl: ['', Validators.required],
-    });
   }
 
-  showHideResults(el: HTMLElement) {
+  showInfo() {
+    this.wantsInfo = !this.wantsInfo;
+  }
+
+  showResults(el: HTMLElement) {
+    if(this.btnText === 'Reset'){
+      this.resultsReady = !this.resultsReady;
+      this.btnText = 'Calculate';
+      this.resetValues();
+      return;
+    }
     // validate that all fields have been entered
     if(this.selectedGender && this.selectedHeight && this.selectedActivity && this.selectedGoal){
       
     this.resultsReady = !this.resultsReady;
-    this.btnText = this.resultsReady ? 'Reset' : 'Calculate';
+    this.btnText = 'Reset';
 
-
-    // TO DO: use values to calculate BMR
-    // TO DO: use values to calculate TDEE
-    // TO DO: use values to calculate daily calories
-    // TO DO: use values to calculate macros
-    // TO DO: use values to calculate macros per day
-    // TO DO: use values to calculate macros per week
-
-    // TO DO: update to display values
 
     this.showRealValues();
     el.scrollIntoView({behavior: 'smooth'});
+
     } else {
       this.snack.open('Missing field(s)', 'x', {
         duration: 3000
@@ -181,13 +190,96 @@ export class CalculatorComponent implements OnInit {
     let a = this.activities.find(o => o.aValue === Number(this.selectedActivity))!;
     console.log(a);
 
-    console.log(this.firstFormGroup.get('firstCtrl')!.value);
-    console.log(this.secondFormGroup.get('secondCtrl')!.value);
-    console.log(this.thirdFormGroup.get('thirdCtrl')!.value);
+    let gndr = this.genders.find(o => o.value === this.selectedGender)!;
+    console.log(gndr);
+
+    let age = this.firstFormGroup.get('firstCtrl')!.value;
+    let weight = this.secondFormGroup.get('secondCtrl')!.value;
 
     this.selectedHeightDisplay = h.ftIn;
     this.selectedActivityDisplay = a.value;
     this.selectedGoalDisplay = g.viewValue;
+
+    this.chosenGoal = g.value;
+
+    this.doCalculations(age, weight, gndr.value, h.cmValue, a.position);
+    this.calculateSplit(g.value);
+  }
+
+  resetValues(){
+    this.selectedHeight = '';
+    this.selectedActivity = '';
+    this.selectedGoal = 0;
+    this.selectedGender = '';
+    this.firstFormGroup.reset();
+    this.secondFormGroup.reset();
+    this.displayValues = [];
+    this.displayMaintenance = 0;
+    this.displayMaintenance2 = 0;
+    this.DATA = [];
+    this.servce.arr = [];
+    this.servce.maintenance = 0;
+  }
+
+  doCalculations(age: any, weight: any, gender: any, height: any, activity: any){
+    this.servce.calculateTdee(age, weight, gender, height, activity);
+    this.displayValues = this.servce.arr;
+    this.displayMaintenance = this.servce.maintenance;
+
+    this.DATA = [{activity: 'Basal Metabolic Rate', calories: this.displayValues[0]},
+    {activity: 'Sedentary', calories: this.displayValues[1]},
+    {activity: 'Light Exercise', calories: this.displayValues[2]},
+    {activity: 'Moderate Exercise', calories: this.displayValues[3]},
+    {activity: 'Heavy Exercise', calories: this.displayValues[4]},
+    {activity: 'Athlete', calories: this.displayValues[5]},];
+
+    this.dataSource = this.DATA;
+
+    console.log('loggin correctly in doCalculations() ?'+ this.displayValues + ' '+ this.displayMaintenance);
+  }
+
+  calculateSplit(goal: any){
+    switch (goal) {
+      case 1: 
+        this.displayMaintenance2 = Math.round(this.displayMaintenance  * this.goalArray[0]);
+        this.carbsCalories = Math.round(this.displayMaintenance2 * .55);
+        this.carbsGrams = Math.round(this.carbsCalories/4);
+        this.proteinCalories = Math.round(this.displayMaintenance2 * .25);
+        this.proteinGrams = Math.round(this.proteinCalories/4);
+        this.fatCalories = Math.round(this.displayMaintenance2 * .2);
+        this.fatGrams = Math.round(this.fatCalories/9);
+        break;
+    
+      case 2:
+        this.displayMaintenance2 = Math.round(this.displayMaintenance  * this.goalArray[1]);
+        this.carbsCalories = Math.round(this.displayMaintenance2 * .55);
+        this.carbsGrams = Math.round(this.carbsCalories/4);
+        this.proteinCalories = Math.round(this.displayMaintenance2 * .25);
+        this.proteinGrams = Math.round(this.proteinCalories/4);
+        this.fatCalories = Math.round(this.displayMaintenance2 * .2);
+        this.fatGrams = Math.round(this.fatCalories/9);
+        break;
+
+      case 3:
+        this.displayMaintenance2 = Math.round(this.displayMaintenance  * this.goalArray[2]);
+        this.carbsCalories = Math.round(this.displayMaintenance2 * .4);
+        this.carbsGrams = Math.round(this.carbsCalories/4);
+        this.proteinCalories = Math.round(this.displayMaintenance2 * .4);
+        this.proteinGrams = Math.round(this.proteinCalories/4);
+        this.fatCalories = Math.round(this.displayMaintenance2 * .2);
+        this.fatGrams = Math.round(this.fatCalories/9);
+        break;
+
+      case 4:
+        this.displayMaintenance2 = Math.round(this.displayMaintenance  * this.goalArray[3]);
+        this.proteinGrams = this.secondFormGroup.get('secondCtrl')!.value;
+        this.proteinCalories = this.proteinGrams * 4;
+        break;
+
+      default:
+        console.log('goal default');
+        break;
+    }
   }
 
 }

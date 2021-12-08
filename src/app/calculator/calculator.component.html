@@ -58,15 +58,7 @@
         </mat-select>
         </mat-form-field>
 
-
-        <form [formGroup]="thirdFormGroup">
-            <mat-form-field>
-              <mat-label>Body Fat % (Optional)</mat-label>
-              <input type="number" matInput placeholder="Ex.) 22" formControlName="thirdCtrl" required>
-            </mat-form-field>
-          </form>
-
-        <button (click)="showHideResults(macros)" class="button" mat-stroked-button>{{ btnText }}</button>
+        <button (click)="showResults(macros)" class="button" mat-stroked-button>{{ btnText }}</button>
     </mat-card>
 
     <div class="matCard22">
@@ -88,23 +80,23 @@
         </mat-chip-list>
     </div>
 
-    <div #macros >
+    <div class="finalResults">
         <div class="macros" *ngIf="resultsReady">
             <div class="layout">
             <div class="matCard11">
                 <h2>Your TDEE Results</h2>
                 <br>
                 <p>
-                    <span class="bold">!VALUE! Calories/Day</span>
+                    <span class="bold">{{ displayMaintenance }} Calories/Day</span>
                 </p>
                 <hr>
                 <p>
-                    <span class="bold">!VALUE! Calories/Week</span>
+                    <span class="bold">{{ displayMaintenance * 7 }} Calories/Week</span>
                 </p>
             </div>
             <div class="matCard22">
                 <p>
-                    Based on your Input, the best estimate for your maintenance calories is !VALUE! per day using the !VALUE! Formula, which is regarded as the most accurate. This table is a visual aid for all the different activity levels.
+                    Based on your Input, the best estimate for your maintenance calories is <strong>{{ displayMaintenance }}</strong> per day using the Mifflin-St Jeor Formula, which is regarded as the most accurate. This table is a visual aid for all the different activity levels.
                 </p>
                 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">                  
                     <!-- Name Column -->
@@ -124,49 +116,60 @@
                   </table>
             </div>
             </div>
-
         
             <div class="goalResult" *ngIf="chosenGoal === 1">
-                <h2>Lean Bulk (110% Surplus)</h2>
+                <h3> {{ selectedGoalDisplay }} </h3>
+                <span class="whyThis" title="Based on your current goals, we recommend you follow this macro breakdown" (click)="showInfo()">Why this?</span>
+                <p class="sml2" *ngIf="wantsInfo">Based on your current goals, we recommend you follow this macro breakdown</p>
                 <br>
-                <p>Total Calories: !VALUE!</p>
+                <p>Total Calories: {{ displayMaintenance2 }}</p>
                 <br>
-                <p>Carbs: !VALUE! Calories/!VALUE! Grams</p>
-                <p>Protein: !VALUE! Calories/!VALUE! Grams</p>
-                <p>Fats: !VALUE! Calories/!VALUE! Grams</p>
+                <p>Carbs: {{ carbsCalories }} Calories/{{ carbsGrams }} Grams</p>
+                <p>Protein: {{ proteinCalories }} Calories/{{ proteinGrams }} Grams</p>
+                <p>Fats: {{ fatCalories }} Calories/{{ fatGrams }} Grams</p>
             </div>
 
             <div class="goalResult" *ngIf="chosenGoal === 2">
-                <h2>Traditional Bulk (120% Surplus)</h2>
+                <h3> {{ selectedGoalDisplay }} </h3>
+                <span title="Based on your current goals, we recommend you follow this macro breakdown" (click)="showInfo()">Why this?</span>
+                <p class="sml2" *ngIf="wantsInfo">Based on your current goals, we recommend you follow this macro breakdown</p>
                 <br>
-                <p>Total Calories: !VALUE!</p>
+                <p>Total Calories: {{ displayMaintenance2 }}</p>
                 <br>
-                <p>Carbs: !VALUE! Calories/!VALUE! Grams</p>
-                <p>Protein: !VALUE! Calories/!VALUE! Grams</p>
-                <p>Fats: !VALUE! Calories/!VALUE! Grams</p>
+                <p>Carbs: {{ carbsCalories }} Calories/{{ carbsGrams }} Grams</p>
+                <p>Protein: {{ proteinCalories }} Calories/{{ proteinGrams }} Grams</p>
+                <p>Fats: {{ fatCalories }} Calories/{{ fatGrams }} Grams</p>
             </div>
 
             <div class="goalResult" *ngIf="chosenGoal === 3">
-                <h2>Fat Loss (25% Deficit)</h2>
+                <h3> {{ selectedGoalDisplay }} </h3>
+                <span title="Based on your current goals, we recommend you follow this macro breakdown" (click)="showInfo()">Why this?</span>
+                <p class="sml2" *ngIf="wantsInfo">Based on your current goals, we recommend you follow this macro breakdown</p>
                 <br>
-                <p>Total Calories: !VALUE!</p>
+                <p>Total Calories: {{ displayMaintenance2 }}</p>
                 <br>
-                <p>Carbs: !VALUE! Calories/!VALUE! Grams</p>
-                <p>Protein: !VALUE! Calories/!VALUE! Grams</p>
-                <p>Fats: !VALUE! Calories/!VALUE! Grams</p>
+                <p>Carbs: {{ carbsCalories }} Calories/{{ carbsGrams }} Grams</p>
+                <p>Protein: {{ proteinCalories }} Calories/{{ proteinGrams }} Grams</p>
+                <p>Fats: {{ fatCalories }} Calories/{{ fatGrams }} Grams</p>
             </div>
             <div class="goalResult" *ngIf="chosenGoal === 4">
-                <h2>Maintenance</h2>
+                <h3> {{ selectedGoalDisplay }} </h3>
+                <span title="Based on your current goals, we recommend you follow this macro breakdown" (click)="showInfo()">Why this?</span>
+                <p class="sml2" *ngIf="wantsInfo">Based on your current goals, we recommend you follow this macro breakdown</p>
                 <br>
-                <p>Total Calories: !VALUE!</p>
+                <p>Total Calories: {{ displayMaintenance2 }}</p>
                 <br>
                 <p>Carbs: X Calories/X Grams</p>
-                <p>Protein: !VALUE! Calories/!VALUE! Grams</p>
+                <p>Protein: {{ proteinCalories }} Calories/{{ proteinGrams }} Grams</p>
                 <p>Fats: X Calories/X Grams</p>
                 <p>Use whatever macro split you want for carbs and fats, but just hit 1 gram of protein per pound of Bodyweight</p>
             </div>
+
             
         </div>
+    </div>
+    <div #macros>
+        <p style="margin-bottom: 10%;"></p>
     </div>
     
     </div>

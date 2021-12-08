@@ -6,6 +6,15 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+.finalResults {
+    padding-top: 5%;
+}
+
+.whyThis {
+    cursor: pointer;
+    color: #004d99;
+}
+
 table {
     width: 100%;
 }
@@ -27,9 +36,6 @@ mat-card {
     margin-right: auto;
 }
 
-.learn {
-    color: #004d99;
-}
 
 .how {
     font-size: 1.5rem;
@@ -40,6 +46,10 @@ mat-card {
 
 .sml {
     padding: 0 20%;
+}
+
+.sml2 {
+    font-size: .75rem;
 }
 
 .layout {
@@ -78,7 +88,7 @@ mat-card {
 
 @media screen and (max-width: 800px) {
     mat-card {
-        padding-top: 0;
+        padding-top: 10%;
         width: 100%;
         margin-bottom: 10%;
     }
