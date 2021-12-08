@@ -6,6 +6,10 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+table {
+    width: 100%;
+}
+
 mat-card {
     width: 50%;
 }
@@ -48,6 +52,17 @@ mat-card {
     margin-right: 5%;
 }
 
+.matCard11 {
+    margin-right: 5%;
+    padding: 3% 5%;
+    width: 50%;
+}
+
+.matCard22 {
+    padding: 3% 5%;
+    width: 50%;
+}
+
 .matCard2 {
     padding: 3% 5%;
 }
@@ -55,13 +70,24 @@ mat-card {
 @media screen and (max-width: 800px) {
     mat-card {
         width: 100%;
-        margin-bottom: 5%;
+        margin-bottom: 2%;
     }
 
     .matCard1 {
         margin-right: 0;
     }
 
+    .matCard11 {
+        margin-right: 0;
+        width: 100%;
+        margin-bottom: 5%;
+    }
+
+    .matCard22 {
+        margin-right: 0;
+        width: 100%;
+        margin-bottom: 5%;
+    }
 }
 
 .button {

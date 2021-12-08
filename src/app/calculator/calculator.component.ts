@@ -22,6 +22,21 @@ interface Goal {
   viewValue: string;
 }
 
+export interface Results {
+  activity: string;
+  calories: number;
+}
+
+const DATA: Results[] = [
+  {activity: 'Basal Metabolic Rate', calories: 0},
+  {activity: 'Sedentary', calories: 500},
+  {activity: 'Light Exercise', calories: 1000},
+  {activity: 'Moderate Exercise', calories: 1500},
+  {activity: 'Heavy Exercise', calories: 2000},
+  {activity: 'Athlete', calories: 2500},
+];
+
+
 @Component({
   selector: 'app-calculator',
   templateUrl: './calculator.component.html',
@@ -51,6 +66,9 @@ export class CalculatorComponent implements OnInit {
   // fat loss: .75
   // maintenance: 1
   goalArray = [1.1, 1.2, .75, 1];
+
+  displayedColumns: string[] = ['activity', 'calories/day'];
+  dataSource = DATA;
 
   genders: Gender[] = [
     {value: 'male', viewValue: 'Male'},
