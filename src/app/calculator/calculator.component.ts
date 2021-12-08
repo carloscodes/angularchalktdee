@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TdeeserviceService } from '../tdeeservice.service';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
+import { faInstagram, faFacebook, faYoutube, faTiktok } from '@fortawesome/free-brands-svg-icons';
 
 interface Gender {
   value: string;
@@ -38,6 +39,10 @@ export interface Results {
 })
 export class CalculatorComponent implements OnInit {
   faBookmark = faBookmark;
+  faInstagram = faInstagram;
+  faFacebook = faFacebook;
+  faYouTube = faYoutube;
+  faTiktok = faTiktok;
 
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
