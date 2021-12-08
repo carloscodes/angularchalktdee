@@ -71,15 +71,6 @@
     </div>
     <br><br><br>
 
-    <div class="results" *ngIf="resultsReady">
-        <mat-chip-list aria-label="Selections">
-            <mat-chip>{{ selectedGender }}</mat-chip>
-            <mat-chip>{{ selectedHeightDisplay }}</mat-chip>
-            <mat-chip>{{ selectedActivityDisplay }}</mat-chip>
-            <mat-chip>{{ selectedGoalDisplay }}</mat-chip>
-        </mat-chip-list>
-    </div>
-
     <div class="finalResults">
         <div class="macros" *ngIf="resultsReady">
             <div class="layout">
@@ -95,6 +86,20 @@
                 <p>
                     <span class="bold">{{ displayMaintenance * 7 }} Calories/Week</span>
                 </p>
+                <br>
+                <br>
+                <h4>Your Choices</h4>
+                <br>
+                <div class="results" *ngIf="resultsReady">
+                    <mat-chip-list aria-label="Selections">
+                        <mat-chip>Age: {{ firstFormGroup.get('firstCtrl')?.value }} </mat-chip>
+                        <mat-chip>Weight: {{ secondFormGroup.get('secondCtrl')?.value }} </mat-chip>
+                        <mat-chip>{{ selectedGender }}</mat-chip>
+                        <mat-chip>{{ selectedHeightDisplay }}</mat-chip>
+                        <mat-chip>{{ selectedActivityDisplay }}</mat-chip>
+                        <mat-chip>{{ selectedGoalDisplay }}</mat-chip>
+                    </mat-chip-list>
+                </div>
             </div>
             <div class="matCard22">
                 <p>
