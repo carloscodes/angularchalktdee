@@ -141,6 +141,7 @@
 
             <mat-card class="goalResult" *ngIf="chosenGoal === 2">
                 <fa-icon class="bookmark" [icon]="faBookmark"></fa-icon>
+                <br><br>
                 <h3 class="goalDisplay"> {{ selectedGoalDisplay }} </h3>
                 <span title="Based on your current goals, we recommend you follow this macro breakdown" (click)="showInfo()">Why this?</span>
                 <p class="sml2" *ngIf="wantsInfo">Based on your current goals, we recommend you follow this macro breakdown</p>
@@ -154,6 +155,7 @@
 
             <mat-card class="goalResult" *ngIf="chosenGoal === 3">
                 <fa-icon class="bookmark" [icon]="faBookmark"></fa-icon>
+                <br><br>
                 <h3 class="goalDisplay"> {{ selectedGoalDisplay }} </h3>
                 <span title="Based on your current goals, we recommend you follow this macro breakdown" (click)="showInfo()">Why this?</span>
                 <p class="sml2" *ngIf="wantsInfo">Based on your current goals, we recommend you follow this macro breakdown</p>
@@ -165,6 +167,7 @@
                 <p>Fats: {{ fatCalories }} Calories/{{ fatGrams }} Grams</p>
             </mat-card>
             <mat-card class="goalResult" *ngIf="chosenGoal === 4">
+                <br><br>
                 <fa-icon class="bookmark" [icon]="faBookmark"></fa-icon>
                 <h3 class="goalDisplay"> {{ selectedGoalDisplay }} </h3>
                 <span title="Based on your current goals, we recommend you follow this macro breakdown" (click)="showInfo()">Why this?</span>
