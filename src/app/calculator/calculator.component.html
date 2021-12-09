@@ -92,12 +92,12 @@
                 <br>
                 <div class="results" *ngIf="resultsReady">
                     <mat-chip-list aria-label="Selections">
-                        <mat-chip>Age: {{ firstFormGroup.get('firstCtrl')?.value }} </mat-chip>
-                        <mat-chip>Weight: {{ secondFormGroup.get('secondCtrl')?.value }} </mat-chip>
-                        <mat-chip>{{ selectedGender }}</mat-chip>
-                        <mat-chip>{{ selectedHeightDisplay }}</mat-chip>
-                        <mat-chip>{{ selectedActivityDisplay }}</mat-chip>
-                        <mat-chip>{{ selectedGoalDisplay }}</mat-chip>
+                        <mat-chip class="chips">Age: {{ firstFormGroup.get('firstCtrl')?.value }} </mat-chip>
+                        <mat-chip class="chips">Weight: {{ secondFormGroup.get('secondCtrl')?.value }} </mat-chip>
+                        <mat-chip class="chips">{{ selectedGender }}</mat-chip>
+                        <mat-chip class="chips">{{ selectedHeightDisplay }}</mat-chip>
+                        <mat-chip class="chips">{{ selectedActivityDisplay }}</mat-chip>
+                        <mat-chip class="chips">{{ selectedGoalDisplay }}</mat-chip>
                     </mat-chip-list>
                 </div>
             </div>
@@ -125,7 +125,7 @@
             </div>
         
             <mat-card class="goalResult" *ngIf="chosenGoal === 1">
-                <fa-icon class="bookmark" [icon]="faBookmark"></fa-icon>
+                <div (click)="showSnack()"><fa-icon class="bookmark" [icon]="faBookmark"></fa-icon></div>
                 <br>
                 <br>
                 <h3 class="goalDisplay"> {{ selectedGoalDisplay }} </h3>
@@ -140,7 +140,7 @@
             </mat-card>
 
             <mat-card class="goalResult" *ngIf="chosenGoal === 2">
-                <fa-icon class="bookmark" [icon]="faBookmark"></fa-icon>
+                <div (click)="showSnack()"><fa-icon class="bookmark" [icon]="faBookmark"></fa-icon></div>
                 <br><br>
                 <h3 class="goalDisplay"> {{ selectedGoalDisplay }} </h3>
                 <span title="Based on your current goals, we recommend you follow this macro breakdown" (click)="showInfo()">Why this?</span>
@@ -154,7 +154,7 @@
             </mat-card>
 
             <mat-card class="goalResult" *ngIf="chosenGoal === 3">
-                <fa-icon class="bookmark" [icon]="faBookmark"></fa-icon>
+                <div (click)="showSnack()"><fa-icon class="bookmark" [icon]="faBookmark"></fa-icon></div>
                 <br><br>
                 <h3 class="goalDisplay"> {{ selectedGoalDisplay }} </h3>
                 <span title="Based on your current goals, we recommend you follow this macro breakdown" (click)="showInfo()">Why this?</span>
@@ -168,9 +168,9 @@
             </mat-card>
             <mat-card class="goalResult" *ngIf="chosenGoal === 4">
                 <br><br>
-                <fa-icon class="bookmark" [icon]="faBookmark"></fa-icon>
+                <div (click)="showSnack()"><fa-icon class="bookmark" [icon]="faBookmark" ></fa-icon></div>
                 <h3 class="goalDisplay"> {{ selectedGoalDisplay }} </h3>
-                <span title="Based on your current goals, we recommend you follow this macro breakdown" (click)="showInfo()">Why this?</span>
+                <span title="Based on your current goals, we recommend you follow this macro breakdown" style="text-decoration: underline;" (click)="showInfo()">Why this?</span>
                 <p class="sml2" *ngIf="wantsInfo">Based on your current goals, we recommend you follow this macro breakdown</p>
                 <br>
                 <p>Total Calories: {{ displayMaintenance2 }}</p>

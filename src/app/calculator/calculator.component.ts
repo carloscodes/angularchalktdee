@@ -159,6 +159,13 @@ export class CalculatorComponent implements OnInit {
 
   }
 
+  showSnack(){
+    this.snack.open('Screen shot me 📲', '', {
+      duration: 1500,
+      horizontalPosition: 'center',
+    });
+  }
+
   showInfo() {
     this.wantsInfo = !this.wantsInfo;
   }
@@ -175,9 +182,9 @@ export class CalculatorComponent implements OnInit {
     this.spinner.show();
 
     setTimeout(() => {
-      /** spinner ends after 5 seconds */
+      /** spinner ends after 1 seconds */
       this.spinner.hide();
-    }, 700);
+    }, 1000);
       
     this.resultsReady = !this.resultsReady;
     this.btnText = 'Reset';
@@ -186,7 +193,7 @@ export class CalculatorComponent implements OnInit {
     this.showRealValues();
     el.scrollIntoView({behavior: 'smooth'});
     this.snack.open('Results ready below!', '', {
-      duration: 3000,
+      duration: 3200,
     });
     } else {
       this.snack.open('Missing field(s)', 'x', {
