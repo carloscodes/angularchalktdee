@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { TdeeserviceService } from '../tdeeservice.service';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram, faFacebook, faYoutube, faTiktok } from '@fortawesome/free-brands-svg-icons';
+import { NgxSpinnerService } from 'ngx-spinner';
+
 
 interface Gender {
   value: string;
@@ -144,7 +146,7 @@ export class CalculatorComponent implements OnInit {
   displayMaintenance!: number;
   displayMaintenance2!: number;
 
-  constructor(private servce: TdeeserviceService, private snack: MatSnackBar, private _formBuilder: FormBuilder) { }
+  constructor(private spinner: NgxSpinnerService,private servce: TdeeserviceService, private snack: MatSnackBar, private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.firstFormGroup = this._formBuilder.group({
@@ -170,6 +172,12 @@ export class CalculatorComponent implements OnInit {
     }
     // validate that all fields have been entered
     if(this.selectedGender && this.selectedHeight && this.selectedActivity && this.selectedGoal){
+    this.spinner.show();
+
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 700);
       
     this.resultsReady = !this.resultsReady;
     this.btnText = 'Reset';
@@ -177,7 +185,9 @@ export class CalculatorComponent implements OnInit {
 
     this.showRealValues();
     el.scrollIntoView({behavior: 'smooth'});
-
+    this.snack.open('Results ready below!', '', {
+      duration: 3000,
+    });
     } else {
       this.snack.open('Missing field(s)', 'x', {
         duration: 3000

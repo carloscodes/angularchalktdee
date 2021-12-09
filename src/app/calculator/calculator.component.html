@@ -70,7 +70,7 @@
     </div>
     </div>
     <br><br><br>
-
+    <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-fussion" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
     <div class="finalResults">
         <div class="macros" *ngIf="resultsReady">
             <div class="layout">
@@ -88,7 +88,7 @@
                 </p>
                 <br>
                 <br>
-                <h4>Your Choices</h4>
+                <h4>Inputs</h4>
                 <br>
                 <div class="results" *ngIf="resultsReady">
                     <mat-chip-list aria-label="Selections">
