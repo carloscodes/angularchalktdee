@@ -93,7 +93,7 @@
                 <div class="results" *ngIf="resultsReady">
                     <mat-chip-list aria-label="Selections">
                         <mat-chip class="chips">Age: {{ firstFormGroup.get('firstCtrl')?.value }} </mat-chip>
-                        <mat-chip class="chips">Weight: {{ secondFormGroup.get('secondCtrl')?.value }} </mat-chip>
+                        <mat-chip class="chips">Weight: {{ secondFormGroup.get('secondCtrl')?.value }}lbs </mat-chip>
                         <mat-chip class="chips">{{ selectedGender }}</mat-chip>
                         <mat-chip class="chips">{{ selectedHeightDisplay }}</mat-chip>
                         <mat-chip class="chips">{{ selectedActivityDisplay }}</mat-chip>
@@ -129,7 +129,7 @@
                 <br>
                 <br>
                 <h3 class="goalDisplay"> {{ selectedGoalDisplay }} </h3>
-                <span class="whyThis" title="Based on your current goals, we recommend you follow this macro breakdown" (click)="showInfo()">Why this?</span>
+                <span class="whyThis" title="Based on your current goals, we recommend you follow this macro breakdown" style="text-decoration: underline;cursor: pointer;"  (click)="showInfo()">More Info</span>
                 <p class="sml2" *ngIf="wantsInfo">While your TDEE can be used as a base line. Our program requires you to follow this macro breakdown</p>
                 <br>
                 <p>Total Calories: {{ displayMaintenance2 }}</p>
@@ -143,7 +143,7 @@
                 <div (click)="showSnack()"><fa-icon class="bookmark" [icon]="faBookmark"></fa-icon></div>
                 <br><br>
                 <h3 class="goalDisplay"> {{ selectedGoalDisplay }} </h3>
-                <span title="Based on your current goals, we recommend you follow this macro breakdown" (click)="showInfo()">Why this?</span>
+                <span title="Based on your current goals, we recommend you follow this macro breakdown" style="text-decoration: underline;cursor: pointer;"  (click)="showInfo()">More Info</span>
                 <p class="sml2" *ngIf="wantsInfo">Based on your current goals, we recommend you follow this macro breakdown</p>
                 <br>
                 <p>Total Calories: {{ displayMaintenance2 }}</p>
@@ -157,7 +157,7 @@
                 <div (click)="showSnack()"><fa-icon class="bookmark" [icon]="faBookmark"></fa-icon></div>
                 <br><br>
                 <h3 class="goalDisplay"> {{ selectedGoalDisplay }} </h3>
-                <span title="Based on your current goals, we recommend you follow this macro breakdown" (click)="showInfo()">Why this?</span>
+                <span title="Based on your current goals, we recommend you follow this macro breakdown" style="text-decoration: underline;cursor: pointer;"  (click)="showInfo()">More Info</span>
                 <p class="sml2" *ngIf="wantsInfo">Based on your current goals, we recommend you follow this macro breakdown</p>
                 <br>
                 <p>Total Calories: {{ displayMaintenance2 }}</p>
@@ -170,7 +170,7 @@
                 <br><br>
                 <div (click)="showSnack()"><fa-icon class="bookmark" [icon]="faBookmark" ></fa-icon></div>
                 <h3 class="goalDisplay"> {{ selectedGoalDisplay }} </h3>
-                <span title="Based on your current goals, we recommend you follow this macro breakdown" style="text-decoration: underline;" (click)="showInfo()">Why this?</span>
+                <span title="Based on your current goals, we recommend you follow this macro breakdown" style="text-decoration: underline;cursor: pointer;" (click)="showInfo()">More Info</span>
                 <p class="sml2" *ngIf="wantsInfo">Based on your current goals, we recommend you follow this macro breakdown</p>
                 <br>
                 <p>Total Calories: {{ displayMaintenance2 }}</p>
